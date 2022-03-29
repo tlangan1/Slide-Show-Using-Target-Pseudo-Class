@@ -1,0 +1,23 @@
+.page:target {
+  display: block;
+}
+
+.page:not(:target) {
+  display: none;
+}
+
+.initialize-page {
+  display: none;
+}
+
+.previous-page,
+.next-page {
+  color: blue;
+}
+
+.previous-page[more_pages="false"],
+.next-page[more_pages="false"] {
+  pointer-events: none;
+  text-decoration: none;
+  color: black;
+}
