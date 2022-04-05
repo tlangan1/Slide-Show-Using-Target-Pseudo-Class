@@ -24,42 +24,30 @@ function onLoad(event) {
   // The helper functions for the executable code above
 
   function onPreviousPageClick(event) {
-    pageNumber = document.querySelector("#p" + (pageNumber - 1))
-      ? pageNumber - 1
-      : pageNumber;
+    pageNumber -= 1;
     document.querySelector(".next-page").href = "#p" + (pageNumber + 1);
     document.querySelector(".previous-page").href = "#p" + pageNumber;
 
-    adjustMorePages();
-  }
-  function onNextPageClick(event) {
-    pageNumber = document.querySelector("#p" + (pageNumber + 1))
-      ? pageNumber + 1
-      : pageNumber;
-    document.querySelector(".next-page").href = "#p" + pageNumber;
-    document.querySelector(".previous-page").href = "#p" + (pageNumber - 1);
-
-    adjustMorePages();
-  }
-
-  function adjustMorePages() {
+    document.querySelector(".next-page").attributes["more_pages"].value = true;
     if (!document.querySelector("#p" + (pageNumber - 1))) {
       document.querySelector(".previous-page").attributes[
         "more_pages"
       ].value = false;
-    } else {
-      document.querySelector(".previous-page").attributes[
-        "more_pages"
-      ].value = true;
     }
+  }
+
+  function onNextPageClick(event) {
+    pageNumber += 1;
+    document.querySelector(".next-page").href = "#p" + pageNumber;
+    document.querySelector(".previous-page").href = "#p" + (pageNumber - 1);
+
+    document.querySelector(".previous-page").attributes[
+      "more_pages"
+    ].value = true;
     if (!document.querySelector("#p" + (pageNumber + 1))) {
       document.querySelector(".next-page").attributes[
         "more_pages"
       ].value = false;
-    } else {
-      document.querySelector(".next-page").attributes[
-        "more_pages"
-      ].value = true;
     }
   }
 }
